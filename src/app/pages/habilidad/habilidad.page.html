@@ -1,0 +1,46 @@
+<app-header>
+  <ion-toolbar>
+    <ion-title>Habilidad: {{ ability?.name | titlecase }}</ion-title>
+    <ion-badge slot="end" color="light">
+      Generación {{ ability?.generation?.name.replace('generation-', '') | uppercase }}
+    </ion-badge>
+  </ion-toolbar>
+</app-header>
+
+<ion-content class="ion-padding">
+
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando información de la habilidad...</p>
+  </div>
+
+  <div *ngIf="ability && !isLoading">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Descripción</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{ ability.short_effect }}</p>
+        <ion-text color="medium">{{ englishEffect }}</ion-text>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pokémon que la poseen</ion-card-title>
+        <ion-card-subtitle>{{ ability.pokemon.length }} Pokémon en total</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="4" size-lg="3" 
+                  *ngFor="let pokemon of pokemonList">
+            <app-pokemon [pokemon]="pokemon"></app-pokemon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>

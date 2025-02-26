@@ -1,9 +1,12 @@
-<ion-header [translucent]="true">
+<app-header>
   <ion-toolbar>
     <ion-title>home</ion-title>
   </ion-toolbar>
-</ion-header>
+</app-header>
 
 <ion-content [fullscreen]="true">
   <app-buscador (buscador) = "goSearchAndFetch($event)"></app-buscador>
+  <div class="ion-padding" *ngIf="pokemon!=null">
+  <app-pokemon [pokemon]="pokemon"></app-pokemon>
+  </div>
 </ion-content>

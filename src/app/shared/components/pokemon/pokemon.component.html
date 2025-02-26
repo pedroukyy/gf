@@ -1,0 +1,56 @@
+<ion-card *ngIf="pokemon">
+  <ion-card-header>
+    <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
+    <ion-card-subtitle>#{{ pokemon.id}}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-img [src]="pokemon.sprites.other['official-artwork'].front_default" 
+           alt="{{ pokemon.name }}"
+           class="ion-padding"></ion-img>
+
+  <ion-list lines="none">
+
+    <ion-item>
+      <ion-label>Tipos</ion-label>
+      <div slot="end">
+        <ion-chip 
+		  *ngFor="let type of pokemon.types"
+		  (click)="navigateToType(type.type.name)">
+		  {{ type.type.name | titlecase }}
+		</ion-chip>
+      </div>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Peso</ion-label>
+      <ion-note slot="end">{{ pokemon.weight / 10 }} kg</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Altura</ion-label>
+      <ion-note slot="end">{{ pokemon.height / 10 }} m</ion-note>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Habilidades</ion-label>
+      <div slot="end">
+        <ion-chip 
+		  *ngFor="let ability of pokemon.abilities"
+		  (click)="navigateToAbility(ability.ability.name)">
+		  {{ ability.ability.name | titlecase }}
+		</ion-chip>
+      </div>
+    </ion-item>
+
+
+    <ion-item *ngFor="let stat of pokemon.stats">
+      <ion-label>{{ stat.stat.name | titlecase }}</ion-label>
+      <ion-progress-bar [value]="stat.base_stat / 100" 
+                       [color]="stat.base_stat > 50 ? 'success' : 'danger'">
+      </ion-progress-bar>
+      <ion-note slot="end">{{ stat.base_stat }}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-card>

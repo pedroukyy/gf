@@ -1,0 +1,78 @@
+<!-- info.page.html -->
+<app-header>
+  <ion-toolbar color="primary">
+    <ion-title>Guía de uso</ion-title>
+  </ion-toolbar>
+</app-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¡Bienvenido a la Pokédex!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="none">
+        <!-- Sección de Búsqueda -->
+        <ion-item>
+          <ion-icon name="search" slot="start" color="primary"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>Búsqueda de Pokémon</h2>
+            <p>Escribe el nombre de un Pokémon en la barra de búsqueda principal. El sistema buscará automáticamente después de 500ms.</p>
+          </ion-label>
+        </ion-item>
+
+        <!-- Sección de Tipos -->
+        <ion-item>
+          <ion-icon name="flash" slot="start" color="danger"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>Información de Tipos</h2>
+            <p>Haz clic en cualquier tipo mostrado en la ficha de un Pokémon para ver sus relaciones de daño y Pokémon asociados.</p>
+          </ion-label>
+        </ion-item>
+
+        <!-- Sección de Habilidades -->
+        <ion-item>
+          <ion-icon name="sparkles" slot="start" color="warning"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>Detalles de Habilidades</h2>
+            <p>Al hacer clic en una habilidad, verás su descripción completa y los Pokémon que pueden aprenderla.</p>
+          </ion-label>
+        </ion-item>
+
+        <!-- Sección de Navegación -->
+        <ion-item>
+          <ion-icon name="compass" slot="start" color="success"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>Navegación Principal</h2>
+            <ul>
+              <li>Usa la barra de busqueda para consultar el pokemon</li>
+              <li>Las habilidades y tipos son botones de información</li>
+            </ul>
+          </ion-label>
+        </ion-item>
+
+        <!-- Sección de Datos -->
+        <ion-item>
+          <ion-icon name="stats-chart" slot="start" color="tertiary"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>Interpretando las Estadísticas</h2>
+            <p>Las barras de progreso muestran valores base (máx. 255). Los colores indican valores sobre/bajo el promedio.</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <!-- Consejos rápidos -->
+      <ion-card color="light" class="ion-margin-top">
+        <ion-card-header>
+          <ion-card-title>Consejos Rápidos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          
+          <ion-chip color="success">Did You Know?</ion-chip>
+          <p>Los números en la Pokédex corresponden al orden oficial de la región Kanto.</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

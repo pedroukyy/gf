@@ -1,0 +1,104 @@
+<app-header>
+  <ion-toolbar>
+    <ion-title>{{ tipo?.name | titlecase }}</ion-title>
+    <ion-badge slot="end" color="light">
+      Gen {{ tipo?.generation?.url.split('/').reverse()[1] }}
+    </ion-badge>
+  </ion-toolbar>
+</app-header>
+
+<ion-content class="ion-padding">
+  <!-- Loading y errores -->
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando información del tipo...</p>
+  </div>
+  <!-- Contenido principal -->
+  <div *ngIf="tipo && !isLoading">
+    <!-- Sección de relaciones de daño -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Efectividad del Tipo</ion-card-title>
+        <ion-card-subtitle>Clase de daño: {{ tipo.move_damage_class.name}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-grid>
+        <ion-row>
+          <!-- Defensivo -->
+          <ion-col size="12" size-md="6">
+            <ion-list-header>Defensa</ion-list-header>
+            <ion-list lines="none">
+              <ion-item *ngFor="let relation of tipo.damage_relations.double_damage_from">
+                <ion-label>Recibe 2x de:</ion-label>
+                <ion-chip color="danger">{{ relation.name | titlecase }}</ion-chip>
+              </ion-item>
+
+              <ion-item *ngFor="let relation of tipo.damage_relations.half_damage_from">
+                <ion-label>Recibe 0.5x de:</ion-label>
+                <ion-chip color="success">{{ relation.name | titlecase }}</ion-chip>
+              </ion-item>
+
+              <ion-item *ngFor="let relation of tipo.damage_relations.no_damage_from">
+                <ion-label>Inmune a:</ion-label>
+                <ion-chip color="medium">{{ relation.name | titlecase }}</ion-chip>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+          <!-- Ofensivo -->
+          <ion-col size="12" size-md="6">
+            <ion-list-header>Ataque</ion-list-header>
+            <ion-list lines="none">
+              <ion-item *ngFor="let relation of tipo.damage_relations.double_damage_to">
+                <ion-label>Inflige 2x a:</ion-label>
+                <ion-chip color="success">{{ relation.name | titlecase }}</ion-chip>
+              </ion-item>
+
+              <ion-item *ngFor="let relation of tipo.damage_relations.half_damage_to">
+                <ion-label>Inflige 0.5x a:</ion-label>
+                <ion-chip color="warning">{{ relation.name | titlecase }}</ion-chip>
+              </ion-item>
+
+              <ion-item *ngFor="let relation of tipo.damage_relations.no_damage_to">
+                <ion-label>Sin efecto a:</ion-label>
+                <ion-chip color="medium">{{ relation.name | titlecase }}</ion-chip>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <!-- Movimientos destacados -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Movimientos Destacados</ion-card-title>
+        <ion-card-subtitle>{{ tipo.moves.length }} movimientos disponibles</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-list lines="none">
+        <ion-item *ngFor="let move of tipo.moves.slice(0, 5)">
+          <ion-label>{{ move.name | titlecase }}</ion-label>
+          <ion-note slot="end">Nv. {{ move.url.split('/')[6] }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <!-- Pokémon del tipo -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pokémon Relacionados</ion-card-title>
+        <ion-card-subtitle>{{ tipo.pokemon.length }} Pokémon en total</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="4" size-lg="3" 
+                  *ngFor="let pokemon of pokemonList">
+            <app-pokemon [pokemon]="pokemon"></app-pokemon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>

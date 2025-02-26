@@ -8,6 +8,7 @@ import { ApiService } from '@services/api.service';
   standalone: false
 })
 export class HomePage implements OnInit {
+  pokemon: any = null;
 
   constructor(private http: ApiService) { }
 
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
 
     this.http.getPokemon(name).subscribe((response: any) => {
 
-      console.log(response);
+
+	  this.pokemon = response;
 
     });
 

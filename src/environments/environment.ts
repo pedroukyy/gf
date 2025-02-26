@@ -6,10 +6,12 @@ export const environment = {
   production: false,
   pokeapi: {
 
-    url: 'https://pokeapi.co',
+    url: 'https://pokeapi.co/api/v2',
     pointer: {
 
-      pokemon: '/api/v2/pokemon/'
+      pokemon: '/pokemon/',
+	  type: '/type/',
+	  ability: '/ability/'
 
     }
 
